@@ -1,6 +1,6 @@
 # Exercise Badges
 
-![](https://byob.yarr.is/Twhiter/made-project/exercise.jv) ![](https://byob.yarr.is/jvalue/made-project/score_ex2) ![](https://byob.yarr.is/jvalue/made-project/score_ex3) ![](https://byob.yarr.is/jvalue/made-project/score_ex4) ![](https://byob.yarr.is/jvalue/made-project/score_ex5)
+![](https://byob.yarr.is/Twhiter/made-project/exercise1.jv) ![](https://byob.yarr.is/Twhiter/made-project/score_ex2) ![](https://byob.yarr.is/Twhiter/made-project/score_ex3) ![](https://byob.yarr.is/Twhiter/made-project/score_ex4) ![](https://byob.yarr.is/Twhiter/made-project/score_ex5)
 
 # Methods of Advanced Data Engineering Template Project
 
