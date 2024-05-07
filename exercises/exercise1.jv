@@ -44,16 +44,4 @@ pipeline FlugPipeline{
         file: "airports.sqlite";
     }
 
-
-
-
-
-
-
-
-
-
-
-
-    
 }

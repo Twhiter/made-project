@@ -1,0 +1,87 @@
+pipeline PflanzungPipeline{
+
+    PflanzungExtractor
+        -> PflanzungTextFileInterpreter
+        -> PflanzungCSVInterpreter
+        -> BaumartDeutschDeleter
+        -> PflanzungTableInterpreter
+        -> PflanzungLoader;
+
+
+
+    block PflanzungExtractor oftype LocalFileExtractor {
+        filePath:"data/stadt-neuss-herbstpflanzung-2023.csv";
+    }
+
+    block PflanzungTextFileInterpreter oftype TextFileInterpreter {}
+
+    block PflanzungCSVInterpreter oftype CSVInterpreter {
+        delimiter:";";
+    }
+
+    
+    block BaumartDeutschDeleter oftype ColumnDeleter {
+        delete: [column E];
+    }
+
+
+    block PflanzungTableInterpreter oftype TableInterpreter{
+        header: true;
+
+        columns:[
+            "lfd_nr" oftype integer,
+            "stadtteil" oftype FurthStadtteil,
+            "standort" oftype text,
+            "baumart_botanisch" oftype text,
+            "id" oftype id,
+            "baumfamilie" oftype text
+        ];
+    }
+
+
+    block PflanzungLoader oftype SQLiteLoader {
+        table: "trees";
+        file: "trees.sqlite";
+    } 
+
+
+
+    valuetype id oftype text {
+        constraints:[
+            GeoCoordinate
+        ];
+    }
+
+    valuetype FurthStadtteil oftype text {
+        constraints:[
+            FurthConstraint
+        ];
+    } 
+
+    
+    constraint GeoCoordinate on text:
+        value matches /^[0-9]{1,3}\.[0-9]*,\s*[0-9]{1,3}\.[0-9]*$/;
+
+    constraint FurthConstraint on text:
+        value matches /^Furth-.*$/;
+
+    
+
+    
+
+
+
+
+
+
+    
+
+
+    
+
+
+
+
+
+
+}

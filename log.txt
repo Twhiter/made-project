@@ -1,0 +1,727 @@
+[PflanzungPipeline] Overview:
+	Blocks (6 blocks with 1 pipes):
+	 -> PflanzungExtractor (LocalFileExtractor)
+		 -> PflanzungTextFileInterpreter (TextFileInterpreter)
+			 -> PflanzungCSVInterpreter (CSVInterpreter)
+				 -> BaumartDeutschDeleter (ColumnDeleter)
+					 -> PflanzungTableInterpreter (TableInterpreter)
+						 -> PflanzungLoader (SQLiteLoader)
+
+	[PflanzungExtractor] Successfully extraced file data/stadt-neuss-herbstpflanzung-2023.csv
+	[PflanzungExtractor] Execution duration: 17 ms.
+	[PflanzungTextFileInterpreter] Decoding file content using encoding "utf-8"
+	[PflanzungTextFileInterpreter] Splitting lines using line break /\r?\n/
+	[PflanzungTextFileInterpreter] Lines were split successfully, the resulting text file has 522 lines
+	[PflanzungTextFileInterpreter] Execution duration: 3 ms.
+	[PflanzungCSVInterpreter] Parsing raw data as CSV using delimiter ";"
+	[PflanzungCSVInterpreter] Parsing raw data as CSV-sheet successful
+	[PflanzungCSVInterpreter] Execution duration: 83 ms.
+	[BaumartDeutschDeleter] Deleting column(s) E
+	[BaumartDeutschDeleter] Execution duration: 3 ms.
+	[PflanzungTableInterpreter] Matching header with provided column names
+	[PflanzungTableInterpreter] Validating 521 row(s) according to the column types
+	[PflanzungTableInterpreter] Invalid value at cell B2: "Dreikönigenviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 2
+	[PflanzungTableInterpreter] Invalid value at cell B3: "Dreikönigenviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 3
+	[PflanzungTableInterpreter] Invalid value at cell B4: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 4
+	[PflanzungTableInterpreter] Invalid value at cell B5: "Erfttal" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 5
+	[PflanzungTableInterpreter] Invalid value at cell B6: "Norf" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 6
+	[PflanzungTableInterpreter] Invalid value at cell B7: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 7
+	[PflanzungTableInterpreter] Invalid value at cell B8: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 8
+	[PflanzungTableInterpreter] Invalid value at cell B9: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 9
+	[PflanzungTableInterpreter] Invalid value at cell B10: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 10
+	[PflanzungTableInterpreter] Invalid value at cell B11: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 11
+	[PflanzungTableInterpreter] Invalid value at cell B12: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 12
+	[PflanzungTableInterpreter] Invalid value at cell B13: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 13
+	[PflanzungTableInterpreter] Invalid value at cell B14: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 14
+	[PflanzungTableInterpreter] Invalid value at cell B15: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 15
+	[PflanzungTableInterpreter] Invalid value at cell B16: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 16
+	[PflanzungTableInterpreter] Invalid value at cell B17: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 17
+	[PflanzungTableInterpreter] Invalid value at cell B18: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 18
+	[PflanzungTableInterpreter] Invalid value at cell B19: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 19
+	[PflanzungTableInterpreter] Invalid value at cell B20: "Weckhoven" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 20
+	[PflanzungTableInterpreter] Invalid value at cell B21: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 21
+	[PflanzungTableInterpreter] Invalid value at cell B22: "Pomona" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Invalid value at cell E22: "Platane" does not match the type id
+	[PflanzungTableInterpreter] Omitting row 22
+	[PflanzungTableInterpreter] Invalid value at cell B23: "Pomona" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Invalid value at cell E23: "Platane" does not match the type id
+	[PflanzungTableInterpreter] Omitting row 23
+	[PflanzungTableInterpreter] Invalid value at cell B24: "Pomona" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Invalid value at cell E24: "Platane" does not match the type id
+	[PflanzungTableInterpreter] Omitting row 24
+	[PflanzungTableInterpreter] Invalid value at cell B25: "Dreikönigenviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 25
+	[PflanzungTableInterpreter] Invalid value at cell B26: "Pomona" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 26
+	[PflanzungTableInterpreter] Invalid value at cell B27: "Pomona" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 27
+	[PflanzungTableInterpreter] Invalid value at cell B28: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 28
+	[PflanzungTableInterpreter] Invalid value at cell B29: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 29
+	[PflanzungTableInterpreter] Invalid value at cell B30: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 30
+	[PflanzungTableInterpreter] Invalid value at cell B31: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 31
+	[PflanzungTableInterpreter] Invalid value at cell B32: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 32
+	[PflanzungTableInterpreter] Invalid value at cell B33: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 33
+	[PflanzungTableInterpreter] Invalid value at cell B34: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 34
+	[PflanzungTableInterpreter] Invalid value at cell B35: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 35
+	[PflanzungTableInterpreter] Invalid value at cell B36: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 36
+	[PflanzungTableInterpreter] Invalid value at cell B37: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 37
+	[PflanzungTableInterpreter] Invalid value at cell B38: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 38
+	[PflanzungTableInterpreter] Invalid value at cell B39: "Grimlinghausen" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 39
+	[PflanzungTableInterpreter] Invalid value at cell B40: "Grimlinghausen" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 40
+	[PflanzungTableInterpreter] Invalid value at cell B41: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 41
+	[PflanzungTableInterpreter] Invalid value at cell B42: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 42
+	[PflanzungTableInterpreter] Invalid value at cell B43: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 43
+	[PflanzungTableInterpreter] Invalid value at cell B44: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 44
+	[PflanzungTableInterpreter] Invalid value at cell B45: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 45
+	[PflanzungTableInterpreter] Invalid value at cell B46: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 46
+	[PflanzungTableInterpreter] Invalid value at cell B47: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 47
+	[PflanzungTableInterpreter] Invalid value at cell B48: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 48
+	[PflanzungTableInterpreter] Invalid value at cell B49: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 49
+	[PflanzungTableInterpreter] Invalid value at cell B50: "Holzheim" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 50
+	[PflanzungTableInterpreter] Invalid value at cell B51: "Norf-Derikum" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 51
+	[PflanzungTableInterpreter] Invalid value at cell B52: "Norf-Derikum" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 52
+	[PflanzungTableInterpreter] Invalid value at cell B53: "Norf-Derikum" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 53
+	[PflanzungTableInterpreter] Invalid value at cell B54: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 54
+	[PflanzungTableInterpreter] Invalid value at cell B55: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 55
+	[PflanzungTableInterpreter] Invalid value at cell B56: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 56
+	[PflanzungTableInterpreter] Invalid value at cell B57: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 57
+	[PflanzungTableInterpreter] Invalid value at cell B58: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 58
+	[PflanzungTableInterpreter] Invalid value at cell B59: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 59
+	[PflanzungTableInterpreter] Invalid value at cell B60: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 60
+	[PflanzungTableInterpreter] Invalid value at cell B61: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 61
+	[PflanzungTableInterpreter] Invalid value at cell B62: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 62
+	[PflanzungTableInterpreter] Invalid value at cell B63: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 63
+	[PflanzungTableInterpreter] Invalid value at cell B64: "Augustinusviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 64
+	[PflanzungTableInterpreter] Invalid value at cell B65: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 65
+	[PflanzungTableInterpreter] Invalid value at cell B66: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 66
+	[PflanzungTableInterpreter] Invalid value at cell B67: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 67
+	[PflanzungTableInterpreter] Invalid value at cell B68: "Weckhoven" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 68
+	[PflanzungTableInterpreter] Invalid value at cell B69: "Weckhoven" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 69
+	[PflanzungTableInterpreter] Invalid value at cell B70: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 70
+	[PflanzungTableInterpreter] Invalid value at cell B71: "Erfttal" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 71
+	[PflanzungTableInterpreter] Invalid value at cell B72: "Erfttal" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 72
+	[PflanzungTableInterpreter] Invalid value at cell B73: "Erfttal" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 73
+	[PflanzungTableInterpreter] Invalid value at cell B74: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 74
+	[PflanzungTableInterpreter] Invalid value at cell B75: "Uedesheim" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 75
+	[PflanzungTableInterpreter] Invalid value at cell B76: "Norf" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 76
+	[PflanzungTableInterpreter] Invalid value at cell B77: "Norf" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 77
+	[PflanzungTableInterpreter] Invalid value at cell B80: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 80
+	[PflanzungTableInterpreter] Invalid value at cell B81: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 81
+	[PflanzungTableInterpreter] Invalid value at cell B83: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 83
+	[PflanzungTableInterpreter] Invalid value at cell B84: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 84
+	[PflanzungTableInterpreter] Invalid value at cell B85: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 85
+	[PflanzungTableInterpreter] Invalid value at cell B87: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 87
+	[PflanzungTableInterpreter] Invalid value at cell B102: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 102
+	[PflanzungTableInterpreter] Invalid value at cell B103: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 103
+	[PflanzungTableInterpreter] Invalid value at cell B104: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 104
+	[PflanzungTableInterpreter] Invalid value at cell B105: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 105
+	[PflanzungTableInterpreter] Invalid value at cell B106: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 106
+	[PflanzungTableInterpreter] Invalid value at cell B107: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 107
+	[PflanzungTableInterpreter] Invalid value at cell B108: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 108
+	[PflanzungTableInterpreter] Invalid value at cell B109: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 109
+	[PflanzungTableInterpreter] Invalid value at cell B110: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 110
+	[PflanzungTableInterpreter] Invalid value at cell B111: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 111
+	[PflanzungTableInterpreter] Invalid value at cell B112: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 112
+	[PflanzungTableInterpreter] Invalid value at cell B113: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 113
+	[PflanzungTableInterpreter] Invalid value at cell B114: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 114
+	[PflanzungTableInterpreter] Invalid value at cell B115: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 115
+	[PflanzungTableInterpreter] Invalid value at cell B116: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 116
+	[PflanzungTableInterpreter] Invalid value at cell B147: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 147
+	[PflanzungTableInterpreter] Invalid value at cell B148: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 148
+	[PflanzungTableInterpreter] Invalid value at cell B149: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 149
+	[PflanzungTableInterpreter] Invalid value at cell B150: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 150
+	[PflanzungTableInterpreter] Invalid value at cell B151: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 151
+	[PflanzungTableInterpreter] Invalid value at cell B152: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 152
+	[PflanzungTableInterpreter] Invalid value at cell B153: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 153
+	[PflanzungTableInterpreter] Invalid value at cell B154: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 154
+	[PflanzungTableInterpreter] Invalid value at cell B155: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 155
+	[PflanzungTableInterpreter] Invalid value at cell B156: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 156
+	[PflanzungTableInterpreter] Invalid value at cell B157: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 157
+	[PflanzungTableInterpreter] Invalid value at cell B166: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 166
+	[PflanzungTableInterpreter] Invalid value at cell B167: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 167
+	[PflanzungTableInterpreter] Invalid value at cell B168: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 168
+	[PflanzungTableInterpreter] Invalid value at cell B169: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 169
+	[PflanzungTableInterpreter] Invalid value at cell B170: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 170
+	[PflanzungTableInterpreter] Invalid value at cell B171: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 171
+	[PflanzungTableInterpreter] Invalid value at cell B172: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 172
+	[PflanzungTableInterpreter] Invalid value at cell B173: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 173
+	[PflanzungTableInterpreter] Invalid value at cell B174: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 174
+	[PflanzungTableInterpreter] Invalid value at cell B175: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 175
+	[PflanzungTableInterpreter] Invalid value at cell B176: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 176
+	[PflanzungTableInterpreter] Invalid value at cell B177: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 177
+	[PflanzungTableInterpreter] Invalid value at cell B178: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 178
+	[PflanzungTableInterpreter] Invalid value at cell B179: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 179
+	[PflanzungTableInterpreter] Invalid value at cell B180: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 180
+	[PflanzungTableInterpreter] Invalid value at cell B181: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 181
+	[PflanzungTableInterpreter] Invalid value at cell B182: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 182
+	[PflanzungTableInterpreter] Invalid value at cell B183: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 183
+	[PflanzungTableInterpreter] Invalid value at cell B184: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 184
+	[PflanzungTableInterpreter] Invalid value at cell B185: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 185
+	[PflanzungTableInterpreter] Invalid value at cell B186: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 186
+	[PflanzungTableInterpreter] Invalid value at cell B187: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 187
+	[PflanzungTableInterpreter] Invalid value at cell B188: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 188
+	[PflanzungTableInterpreter] Invalid value at cell B189: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 189
+	[PflanzungTableInterpreter] Invalid value at cell B202: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 202
+	[PflanzungTableInterpreter] Invalid value at cell B203: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 203
+	[PflanzungTableInterpreter] Invalid value at cell B204: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 204
+	[PflanzungTableInterpreter] Invalid value at cell B205: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 205
+	[PflanzungTableInterpreter] Invalid value at cell B207: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 207
+	[PflanzungTableInterpreter] Invalid value at cell B208: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 208
+	[PflanzungTableInterpreter] Invalid value at cell B209: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 209
+	[PflanzungTableInterpreter] Invalid value at cell B210: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 210
+	[PflanzungTableInterpreter] Invalid value at cell B211: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 211
+	[PflanzungTableInterpreter] Invalid value at cell B212: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 212
+	[PflanzungTableInterpreter] Invalid value at cell B213: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 213
+	[PflanzungTableInterpreter] Invalid value at cell B214: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 214
+	[PflanzungTableInterpreter] Invalid value at cell B215: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 215
+	[PflanzungTableInterpreter] Invalid value at cell B216: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 216
+	[PflanzungTableInterpreter] Invalid value at cell B217: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 217
+	[PflanzungTableInterpreter] Invalid value at cell B218: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 218
+	[PflanzungTableInterpreter] Invalid value at cell B219: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 219
+	[PflanzungTableInterpreter] Invalid value at cell B220: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 220
+	[PflanzungTableInterpreter] Invalid value at cell B221: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 221
+	[PflanzungTableInterpreter] Invalid value at cell B222: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 222
+	[PflanzungTableInterpreter] Invalid value at cell B223: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 223
+	[PflanzungTableInterpreter] Invalid value at cell B224: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 224
+	[PflanzungTableInterpreter] Invalid value at cell B225: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 225
+	[PflanzungTableInterpreter] Invalid value at cell B226: "Weckhoven" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 226
+	[PflanzungTableInterpreter] Invalid value at cell B227: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 227
+	[PflanzungTableInterpreter] Invalid value at cell B228: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 228
+	[PflanzungTableInterpreter] Invalid value at cell B229: "Pomona" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 229
+	[PflanzungTableInterpreter] Invalid value at cell B230: "Pomona" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 230
+	[PflanzungTableInterpreter] Invalid value at cell B231: "Pomona" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 231
+	[PflanzungTableInterpreter] Invalid value at cell B232: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 232
+	[PflanzungTableInterpreter] Invalid value at cell B233: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 233
+	[PflanzungTableInterpreter] Invalid value at cell B234: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 234
+	[PflanzungTableInterpreter] Invalid value at cell B235: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 235
+	[PflanzungTableInterpreter] Invalid value at cell B236: "Grimlinghausen" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 236
+	[PflanzungTableInterpreter] Invalid value at cell B237: "Grimlinghausen" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 237
+	[PflanzungTableInterpreter] Invalid value at cell B238: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 238
+	[PflanzungTableInterpreter] Invalid value at cell B239: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 239
+	[PflanzungTableInterpreter] Invalid value at cell B240: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 240
+	[PflanzungTableInterpreter] Invalid value at cell B241: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 241
+	[PflanzungTableInterpreter] Invalid value at cell B242: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 242
+	[PflanzungTableInterpreter] Invalid value at cell B243: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 243
+	[PflanzungTableInterpreter] Invalid value at cell B244: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 244
+	[PflanzungTableInterpreter] Invalid value at cell B245: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 245
+	[PflanzungTableInterpreter] Invalid value at cell B246: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 246
+	[PflanzungTableInterpreter] Invalid value at cell B247: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 247
+	[PflanzungTableInterpreter] Invalid value at cell B248: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 248
+	[PflanzungTableInterpreter] Invalid value at cell B249: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 249
+	[PflanzungTableInterpreter] Invalid value at cell B250: "Holzheim" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 250
+	[PflanzungTableInterpreter] Invalid value at cell B251: "Holzheim" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 251
+	[PflanzungTableInterpreter] Invalid value at cell B252: "Erfttal" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 252
+	[PflanzungTableInterpreter] Invalid value at cell B253: "Norf-Derikum" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 253
+	[PflanzungTableInterpreter] Invalid value at cell B254: "Norf-Derikum" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 254
+	[PflanzungTableInterpreter] Invalid value at cell B255: "Norf" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 255
+	[PflanzungTableInterpreter] Invalid value at cell B256: "Norf" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 256
+	[PflanzungTableInterpreter] Invalid value at cell B257: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 257
+	[PflanzungTableInterpreter] Invalid value at cell B258: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 258
+	[PflanzungTableInterpreter] Invalid value at cell B259: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 259
+	[PflanzungTableInterpreter] Invalid value at cell B260: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 260
+	[PflanzungTableInterpreter] Invalid value at cell B261: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 261
+	[PflanzungTableInterpreter] Invalid value at cell B262: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 262
+	[PflanzungTableInterpreter] Invalid value at cell B263: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 263
+	[PflanzungTableInterpreter] Invalid value at cell B264: "Augustinusviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 264
+	[PflanzungTableInterpreter] Invalid value at cell B265: "Augustinusviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 265
+	[PflanzungTableInterpreter] Invalid value at cell B266: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 266
+	[PflanzungTableInterpreter] Invalid value at cell B267: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 267
+	[PflanzungTableInterpreter] Invalid value at cell B268: "Wehl" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 268
+	[PflanzungTableInterpreter] Invalid value at cell B269: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 269
+	[PflanzungTableInterpreter] Invalid value at cell B270: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 270
+	[PflanzungTableInterpreter] Invalid value at cell B283: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 283
+	[PflanzungTableInterpreter] Invalid value at cell B284: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 284
+	[PflanzungTableInterpreter] Invalid value at cell B285: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 285
+	[PflanzungTableInterpreter] Invalid value at cell B286: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 286
+	[PflanzungTableInterpreter] Invalid value at cell B287: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 287
+	[PflanzungTableInterpreter] Invalid value at cell B289: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 289
+	[PflanzungTableInterpreter] Invalid value at cell B290: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 290
+	[PflanzungTableInterpreter] Invalid value at cell B291: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 291
+	[PflanzungTableInterpreter] Invalid value at cell B292: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 292
+	[PflanzungTableInterpreter] Invalid value at cell B293: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 293
+	[PflanzungTableInterpreter] Invalid value at cell B294: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 294
+	[PflanzungTableInterpreter] Invalid value at cell B295: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 295
+	[PflanzungTableInterpreter] Invalid value at cell B309: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 309
+	[PflanzungTableInterpreter] Invalid value at cell B310: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 310
+	[PflanzungTableInterpreter] Invalid value at cell B311: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 311
+	[PflanzungTableInterpreter] Invalid value at cell B312: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 312
+	[PflanzungTableInterpreter] Invalid value at cell B313: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 313
+	[PflanzungTableInterpreter] Invalid value at cell B314: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 314
+	[PflanzungTableInterpreter] Invalid value at cell B315: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 315
+	[PflanzungTableInterpreter] Invalid value at cell B318: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 318
+	[PflanzungTableInterpreter] Invalid value at cell B325: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 325
+	[PflanzungTableInterpreter] Invalid value at cell B326: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 326
+	[PflanzungTableInterpreter] Invalid value at cell B327: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 327
+	[PflanzungTableInterpreter] Invalid value at cell B328: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 328
+	[PflanzungTableInterpreter] Invalid value at cell B329: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 329
+	[PflanzungTableInterpreter] Invalid value at cell B330: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 330
+	[PflanzungTableInterpreter] Invalid value at cell B331: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 331
+	[PflanzungTableInterpreter] Invalid value at cell B332: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 332
+	[PflanzungTableInterpreter] Invalid value at cell B333: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 333
+	[PflanzungTableInterpreter] Invalid value at cell B334: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 334
+	[PflanzungTableInterpreter] Invalid value at cell B335: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 335
+	[PflanzungTableInterpreter] Invalid value at cell B336: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 336
+	[PflanzungTableInterpreter] Invalid value at cell B342: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 342
+	[PflanzungTableInterpreter] Invalid value at cell B354: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 354
+	[PflanzungTableInterpreter] Invalid value at cell B356: "Weckhoven" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 356
+	[PflanzungTableInterpreter] Invalid value at cell B357: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 357
+	[PflanzungTableInterpreter] Invalid value at cell B358: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 358
+	[PflanzungTableInterpreter] Invalid value at cell B359: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 359
+	[PflanzungTableInterpreter] Invalid value at cell B360: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 360
+	[PflanzungTableInterpreter] Invalid value at cell B361: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 361
+	[PflanzungTableInterpreter] Invalid value at cell B362: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 362
+	[PflanzungTableInterpreter] Invalid value at cell B363: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 363
+	[PflanzungTableInterpreter] Invalid value at cell B364: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 364
+	[PflanzungTableInterpreter] Invalid value at cell B365: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 365
+	[PflanzungTableInterpreter] Invalid value at cell B366: "Vogelsang Bols-Siedlung" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 366
+	[PflanzungTableInterpreter] Invalid value at cell B367: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 367
+	[PflanzungTableInterpreter] Invalid value at cell B368: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 368
+	[PflanzungTableInterpreter] Invalid value at cell B369: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 369
+	[PflanzungTableInterpreter] Invalid value at cell B370: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 370
+	[PflanzungTableInterpreter] Invalid value at cell B371: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 371
+	[PflanzungTableInterpreter] Invalid value at cell B372: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 372
+	[PflanzungTableInterpreter] Invalid value at cell B373: "Weckhoven" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 373
+	[PflanzungTableInterpreter] Invalid value at cell B374: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 374
+	[PflanzungTableInterpreter] Invalid value at cell B375: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 375
+	[PflanzungTableInterpreter] Invalid value at cell B376: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 376
+	[PflanzungTableInterpreter] Invalid value at cell B377: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 377
+	[PflanzungTableInterpreter] Invalid value at cell B378: "Uedesheim" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 378
+	[PflanzungTableInterpreter] Invalid value at cell B379: "Pomona" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Invalid value at cell E379: "Platane" does not match the type id
+	[PflanzungTableInterpreter] Omitting row 379
+	[PflanzungTableInterpreter] Invalid value at cell B380: "Pomona" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 380
+	[PflanzungTableInterpreter] Invalid value at cell B381: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 381
+	[PflanzungTableInterpreter] Invalid value at cell B382: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 382
+	[PflanzungTableInterpreter] Invalid value at cell B383: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 383
+	[PflanzungTableInterpreter] Invalid value at cell B384: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 384
+	[PflanzungTableInterpreter] Invalid value at cell B385: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 385
+	[PflanzungTableInterpreter] Invalid value at cell B386: "Hammfeld" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 386
+	[PflanzungTableInterpreter] Invalid value at cell B387: "Grimlinghausen" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 387
+	[PflanzungTableInterpreter] Invalid value at cell B388: "Grimlinghausen" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 388
+	[PflanzungTableInterpreter] Invalid value at cell B389: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 389
+	[PflanzungTableInterpreter] Invalid value at cell B390: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 390
+	[PflanzungTableInterpreter] Invalid value at cell B391: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 391
+	[PflanzungTableInterpreter] Invalid value at cell B392: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 392
+	[PflanzungTableInterpreter] Invalid value at cell B393: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 393
+	[PflanzungTableInterpreter] Invalid value at cell B394: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 394
+	[PflanzungTableInterpreter] Invalid value at cell B395: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 395
+	[PflanzungTableInterpreter] Invalid value at cell B396: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 396
+	[PflanzungTableInterpreter] Invalid value at cell B397: "Reuschenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 397
+	[PflanzungTableInterpreter] Invalid value at cell B398: "Holzheim" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 398
+	[PflanzungTableInterpreter] Invalid value at cell B399: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 399
+	[PflanzungTableInterpreter] Invalid value at cell B400: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 400
+	[PflanzungTableInterpreter] Invalid value at cell B401: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 401
+	[PflanzungTableInterpreter] Invalid value at cell B402: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 402
+	[PflanzungTableInterpreter] Invalid value at cell B403: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 403
+	[PflanzungTableInterpreter] Invalid value at cell B404: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 404
+	[PflanzungTableInterpreter] Invalid value at cell B405: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 405
+	[PflanzungTableInterpreter] Invalid value at cell B406: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 406
+	[PflanzungTableInterpreter] Invalid value at cell B407: "Augustinusviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 407
+	[PflanzungTableInterpreter] Invalid value at cell B408: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 408
+	[PflanzungTableInterpreter] Invalid value at cell B409: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 409
+	[PflanzungTableInterpreter] Invalid value at cell B410: "Erfttal" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 410
+	[PflanzungTableInterpreter] Invalid value at cell B411: "Norf" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 411
+	[PflanzungTableInterpreter] Invalid value at cell B412: "Norf" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 412
+	[PflanzungTableInterpreter] Invalid value at cell B413: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 413
+	[PflanzungTableInterpreter] Invalid value at cell B414: "Weissenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 414
+	[PflanzungTableInterpreter] Invalid value at cell B417: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 417
+	[PflanzungTableInterpreter] Invalid value at cell B418: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 418
+	[PflanzungTableInterpreter] Invalid value at cell B425: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 425
+	[PflanzungTableInterpreter] Invalid value at cell B428: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 428
+	[PflanzungTableInterpreter] Invalid value at cell B429: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 429
+	[PflanzungTableInterpreter] Invalid value at cell B430: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 430
+	[PflanzungTableInterpreter] Invalid value at cell B431: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 431
+	[PflanzungTableInterpreter] Invalid value at cell B432: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 432
+	[PflanzungTableInterpreter] Invalid value at cell B433: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 433
+	[PflanzungTableInterpreter] Invalid value at cell B448: "Weissenberg" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 448
+	[PflanzungTableInterpreter] Invalid value at cell B459: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 459
+	[PflanzungTableInterpreter] Invalid value at cell B460: "Vogelsang" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 460
+	[PflanzungTableInterpreter] Invalid value at cell B461: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 461
+	[PflanzungTableInterpreter] Invalid value at cell B462: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 462
+	[PflanzungTableInterpreter] Invalid value at cell B463: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 463
+	[PflanzungTableInterpreter] Invalid value at cell B464: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 464
+	[PflanzungTableInterpreter] Invalid value at cell B465: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 465
+	[PflanzungTableInterpreter] Invalid value at cell B466: "Norf" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 466
+	[PflanzungTableInterpreter] Invalid value at cell B467: "Norf" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 467
+	[PflanzungTableInterpreter] Invalid value at cell B469: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 469
+	[PflanzungTableInterpreter] Invalid value at cell B470: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 470
+	[PflanzungTableInterpreter] Invalid value at cell B471: "Gnadental" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 471
+	[PflanzungTableInterpreter] Invalid value at cell B472: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 472
+	[PflanzungTableInterpreter] Invalid value at cell B473: "Barbaraviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 473
+	[PflanzungTableInterpreter] Invalid value at cell B485: "Norf" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 485
+	[PflanzungTableInterpreter] Invalid value at cell B486: "Norf" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 486
+	[PflanzungTableInterpreter] Invalid value at cell B487: "Norf" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 487
+	[PflanzungTableInterpreter] Invalid value at cell B488: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 488
+	[PflanzungTableInterpreter] Invalid value at cell B489: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 489
+	[PflanzungTableInterpreter] Invalid value at cell B490: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 490
+	[PflanzungTableInterpreter] Invalid value at cell B491: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 491
+	[PflanzungTableInterpreter] Invalid value at cell B492: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 492
+	[PflanzungTableInterpreter] Invalid value at cell B493: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 493
+	[PflanzungTableInterpreter] Invalid value at cell B494: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 494
+	[PflanzungTableInterpreter] Invalid value at cell B495: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 495
+	[PflanzungTableInterpreter] Invalid value at cell B496: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 496
+	[PflanzungTableInterpreter] Invalid value at cell B497: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 497
+	[PflanzungTableInterpreter] Invalid value at cell B498: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 498
+	[PflanzungTableInterpreter] Invalid value at cell B499: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 499
+	[PflanzungTableInterpreter] Invalid value at cell B500: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 500
+	[PflanzungTableInterpreter] Invalid value at cell B501: "Stadionviertel" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 501
+	[PflanzungTableInterpreter] Invalid value at cell B502: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 502
+	[PflanzungTableInterpreter] Invalid value at cell B503: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 503
+	[PflanzungTableInterpreter] Invalid value at cell B504: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 504
+	[PflanzungTableInterpreter] Invalid value at cell B505: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 505
+	[PflanzungTableInterpreter] Invalid value at cell B506: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 506
+	[PflanzungTableInterpreter] Invalid value at cell B507: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 507
+	[PflanzungTableInterpreter] Invalid value at cell B508: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 508
+	[PflanzungTableInterpreter] Invalid value at cell B509: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 509
+	[PflanzungTableInterpreter] Invalid value at cell B510: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 510
+	[PflanzungTableInterpreter] Invalid value at cell B511: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 511
+	[PflanzungTableInterpreter] Invalid value at cell B514: "Innenstadt" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 514
+	[PflanzungTableInterpreter] Invalid value at cell B516: "Furth Süd" does not match the type FurthStadtteil
+	[PflanzungTableInterpreter] Omitting row 516
+	[PflanzungTableInterpreter] Validation completed, the resulting table has 175 row(s) and 6 column(s)
+	[PflanzungTableInterpreter] Execution duration: 167 ms.
+	[PflanzungLoader] Opening database file trees.sqlite
+	[PflanzungLoader] Dropping previous table "trees" if it exists
+	[PflanzungLoader] Creating table "trees"
+	[PflanzungLoader] Inserting 175 row(s) into table "trees"
+	[PflanzungLoader] The data was successfully loaded into the database
+	[PflanzungLoader] Execution duration: 54 ms.
+[PflanzungPipeline] Execution duration: 328 ms.
