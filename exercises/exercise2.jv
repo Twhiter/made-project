@@ -41,7 +41,7 @@ pipeline PflanzungPipeline{
 
     block PflanzungLoader oftype SQLiteLoader {
         table: "trees";
-        file: "trees.sqlite";
+        file: "exercises/trees.sqlite";
     } 
 
 

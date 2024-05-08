@@ -41,7 +41,7 @@ pipeline FlugPipeline{
 
     block FlugLoader oftype SQLiteLoader {
         table: "airports";
-        file: "airports.sqlite";
+        file: "exercises/airports.sqlite";
     }
 
 }
