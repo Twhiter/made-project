@@ -8,7 +8,7 @@ pipeline FlugPipeline{
         -> FlugLoader;
 
     block FlugExtractor oftype LocalFileExtractor {
-        filePath:"data/rhein-kreis-neuss-flughafen-weltweit.csv";
+        filePath:"rhein-kreis-neuss-flughafen-weltweit.csv";
     }
 
     block FlugTextFileInterpreter oftype TextFileInterpreter {}
@@ -41,7 +41,7 @@ pipeline FlugPipeline{
 
     block FlugLoader oftype SQLiteLoader {
         table: "airports";
-        file: "exercises/airports.sqlite";
+        file: "airports.sqlite";
     }
 
 }

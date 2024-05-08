@@ -10,7 +10,7 @@ pipeline PflanzungPipeline{
 
 
     block PflanzungExtractor oftype LocalFileExtractor {
-        filePath:"data/stadt-neuss-herbstpflanzung-2023.csv";
+        filePath:"stadt-neuss-herbstpflanzung-2023.csv";
     }
 
     block PflanzungTextFileInterpreter oftype TextFileInterpreter {}
@@ -41,7 +41,7 @@ pipeline PflanzungPipeline{
 
     block PflanzungLoader oftype SQLiteLoader {
         table: "trees";
-        file: "exercises/trees.sqlite";
+        file: "trees.sqlite";
     } 
 
 
