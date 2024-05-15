@@ -2,19 +2,19 @@
 
 ## Title
 <!-- Give your project a short title. -->
-How does CO2 and global warmming affects the soil conditions in germany?
+How does CO2 and global warming affects the soil conditions in Germany?
 
 ## Main Question
 
 <!-- Think about one main question you want to answer based on the data. -->
-1. How has the temperature changed in Germany?
+1. How has the temperature changed in Germany over the years?
 2. How does the temperature change affect the precipitation in Germany?
 3. How does the global CO2 emission, temperature change and precipitation affect the soil condition?
 
 ## Description
 
 <!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
-XY is an important problem, because... This projects analyzes XY, using method A. The results can give insights into...
+The change of soil condition led by climate change is an important problem, because changes of soil condition affects the agriculture, which may inadvertently influence human society .This projects first analyses correlation between global emission of carbon dioxide CO2 and temperature, using Pearson's correlation .The results can give insights into how does CO2 increases the temperature. Secondly, the project analyses the precipitation and CO2. Finally, it analyses the soil condition's correlation with CO2, temperature and precipitation, trying to discover whether the climate change plays a role in soil condition.
 
 ## Datasources
 
