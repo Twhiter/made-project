@@ -2,7 +2,7 @@
 
 ## Title
 <!-- Give your project a short title. -->
-How does CO2 and global warming affects the soil conditions in Germany?
+Analysis regarding CO2, precipitation and temperature affection on soil conditions
 
 ## Main Question
 
@@ -60,7 +60,8 @@ The datasource is assistance datasource, mainly cooperating with datasource 4, c
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
 
-1. Example Issue [#1][i1]
-2. ...
-
-[i1]: https://github.com/jvalue/made-template/issues/1
+1. Searching suitable dataset
+2. Writing project plan
+3. Building automated data pipelines
+4. Data analysis and find correlation
+5. Concluding
