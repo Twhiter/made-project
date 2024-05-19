@@ -51,7 +51,7 @@ The datasource consists of German regional average values for historical monthly
 The datasource consists of historical monthly soil conditions in Germany at different stations, from 01.1991 to 12.2023. Soil Properties, like soil moisture,soil temperatures ..etc are included.
 
 ### Side Datasource: Data of soil station in Germany
-* Data URL: https://opendata.dwd.de/climate_environment/CDC/help/stations_list_soil.txt
+* Data URL: https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/derived_germany_soil_monthly_historical_stations_list.txt
 * Data Type: CSV
 
 The datasource is assistance datasource, mainly cooperating with datasource 4, can be used for station details by station Index provided in datasource 4. The datasource consists of data Index, station name, station position...etc.
