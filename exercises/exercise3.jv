@@ -20,7 +20,6 @@ pipeline RailwayPipeline{
 
     block RailwayTextRangeSelector oftype TextRangeSelector {
         lineFrom:8;
-        lineTo:41336;
     }
 
     block RailwayCSVInterpreter oftype CSVInterpreter {
@@ -65,7 +64,7 @@ pipeline RailwayPipeline{
     }
 
     constraint GoodsIdConstraint oftype RegexConstraint {
-        regex: /^NST7-(\d{3}|[A-Z]{3})$/;
+        regex: /^NST7-([A-Z0-9]{3})$/;
     }
     
     valuetype Numeric oftype integer {
