@@ -44,6 +44,8 @@ pipeline RailwayPipeline{
         columns:[
             'year' oftype Numeric,
             'month' oftype GermanMonth,
+            'goods_name' oftype text,
+            'goods_source' oftype text,
             'goods_id' oftype GoodsId,
             'abroad' oftype Numeric,
             'total' oftype Numeric
