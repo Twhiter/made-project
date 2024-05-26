@@ -8,8 +8,9 @@ Analysis regarding CO2, precipitation and temperature affection on soil conditio
 
 <!-- Think about one main question you want to answer based on the data. -->
 1. How has the temperature changed in Germany over the years?
-2. How does the temperature change affect the precipitation in Germany?
-3. How does the global CO2 emission, temperature change and precipitation affect the soil condition?
+2. How has the global CO2 emission changed over the years?
+3. How has the temperature change and global CO2 emission affected the precipitation in Germany?
+4. How does the global CO2 emission, temperature change and precipitation affect the soil condition?
 
 ## Description
 
@@ -46,7 +47,7 @@ The datasource consists of German regional average values for historical monthly
 ### Datasource4: Historical monthly soil condition data in Germany
 * Metadata URL: https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/DESCRIPTION_derivgermany_soil_monthly_historical_en.pdf
 * Data URL: https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/
-* Data Type: CSV directory
+* Data Type: GZ file directory
 
 The datasource consists of historical monthly soil conditions in Germany at different stations, from 01.1991 to 12.2023. Soil Properties, like soil moisture,soil temperatures ..etc are included.
 
@@ -60,8 +61,12 @@ The datasource is assistance datasource, mainly cooperating with datasource 4, c
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
 
-1. Searching suitable dataset
-2. Writing project plan
-3. Building automated data pipelines
-4. Data analysis and find correlation
-5. Concluding
+1. Searching suitable source of CO2 emission, temperature change, precipitation and soil conditions
+2. Check data source license and availability
+3. Writing project plan
+4. Building automated pipelines
+   1. Building automated ETL pipelines
+   2. Building automated Continuous Integration pipelines
+   3. Building automated testing pipelines
+5. Data analysis
+6. Concluding
