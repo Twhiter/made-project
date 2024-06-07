@@ -10,29 +10,29 @@ The detail of each data source can be found below in the table. All the datasour
 
 ||License|filetype|Accuracy|Completeness|Consistency|Timeliness|Relevancy
 |-|-|-|-|-|-|-|-
-|Datasource 1|CC BY 4.0|CSV|Uncertain, the data is computed from multiple sources by the author|Somehow, some countries missing|Yes|Yes,up to recent years|Yes
-|Datasource 2|CC BY 4.0|CSV directory|Yes, the data is from authorities|Yes|Yes|Yes,up to recent years|Yes
-|Datasource 3|CC BY 4.0|CSV|Yes, the data is from authorities|Yes|Yes|Yes,up to recent years|Yes
-|Datasource 4|CC BY 4.0|GZ file directory|Yes, the data is from authorities|Yes|Yes|Yes,up to recent years|Yes
-|Datasource 5|CC BY 4.0|CSV|Yes, the data is from authorities|Yes|Yes|Yes,up to recent years|Yes
+|Datasource 1|CC BY 4.0|CSV|Uncertain, the data is computed from multiple sources by the author|Somehow, some cell missing|Yes|Yes|Yes
+|Datasource 2|CC BY 4.0|CSV directory|Yes|Yes|Yes|Yes|Yes
+|Datasource 3|CC BY 4.0|CSV|Yes|Yes|Yes|Yes|Yes
+|Datasource 4|CC BY 4.0|GZ file directory|Yes|Yes|Yes|Yes|Yes
+|Datasource 5|CC BY 4.0|CSV|Yes|Yes|Yes|Yes|Yes
 
 
 #### Datasource 1: Data on CO2 and Greenhouse Gas Emissions by Our World in Data
 * Metadata URL: https://github.com/owid/co2-data/blob/master/owid-co2-codebook.csv
 * Data URL: https://nyc3.digitaloceanspaces.com/owid-public/data/co2/owid-co2-data.csv
 
-The datasource consists of CO2 emissions of different countries from 1850 to 2022. The data source records detailed emission source, from oil, gas, industry ...etc. Moreover, emission per capita and per GDP is also accounted.
+The datasource consists of CO2 emissions of different countries from 1850 to 2022. The data source records detailed emission source, from oil, gas, industry ...etc. Moreover, emission per capita and per GDP is also included.
 
 #### Datasource 2: Regional average value for historical monthly mean temperature
 * Metadata URL: https://www.dwd.de/EN/ourservices/cdc/cdc_ueberblick-klimadaten_en.html
 * Data URL: https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/air_temperature_mean/
 
-The datasource consists of German regional average values for historical monthly mean temperature. The dataset dates back to 01.1881 until 01.2024.
+The datasource consists of German regional average values for historical monthly mean temperature, e.g average temperature in Bayern.
 #### Datasource 3: Regional average value for historical monthly mean precipitation
-* Metadata URL: https://www.dwd.de/EN/ourservices/cdc/cdc_ueberblick-klimadaten_en.html;jsessionid=31CF9807245E6D5DC250829F80D5EF75.live21071?nn=495490#doc725352bodyText4:~:text=4.-,Average%20values%20for%20the%20individual%20federal%20states%20and%20for%20Germany%20as%20a%20whole,-The%20mean%20values
+* Metadata URL: https://www.dwd.de/EN/ourservices/cdc/cdc_ueberblick-klimadaten_en.html
 * Data URL: https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/precipitation/
 
-The datasource consists of German regional average values for historical monthly mean precipitation. The dataset dates back to 01.1881 until 01.2024.
+The datasource consists of German regional average values for historical monthly mean precipitation, e.g average precipitation amount in Bayern.
 
 #### Datasource 4: Historical monthly soil condition data in Germany
 * Metadata URL: https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/DESCRIPTION_derivgermany_soil_monthly_historical_en.pdf
@@ -46,31 +46,32 @@ The datasource consists of historical monthly soil conditions in Germany at diff
 The datasource is assistance datasource, mainly cooperating with datasource 4, can be used for station details by station Index provided in datasource 4. The datasource consists of data Index, station name, station position...etc.
 
 ### Data pipeline
-There are two types of data sources in thi pipeline, which are CSV link and directory link respectively. For CSV links, it's directly passed to Downloader. For Directory links, it's first passed to fetcher that fetches HTML content, then passes to parser that extracts the required links from the HTML content. Downloader takes a link, downloads the corresponding file and saves it locally. The transformer does manipulation on the raw data. After transformation, the loader loads the processed data to CSV file.
+There are five data sources in the project. The ETL pipeline takes the link of data source, extracting, transform and loading the data source in a sequence. The Figure 1 shows this procedure.
 
-The fetcher and Downloader is implemented with requests library, and parser is implemented with beautifulsoup. Both Transformer and Loader are implemented with Pandas.
-<img src="./resource/image.png" alt="" style="width:80%;margin-left: auto;margin-right: auto;"/>
+#### Extract Data
+We use requests library to fetch the datasource. For datasource 1 and 5, we directly the link to download the data since the links are already the file we require. For datasource 2,3 and 4, which are csv directory and gz directory link, extraction and filter on the fetched html content to obtain link list is conducted. Files in the link list are one-by-one downloaded.
 
-#### Transformation in data source 1
-For extracted data, we apply filter on the column 'country', only selecting the world data. Then we remove the rows that has null co2 value, afterwards we select 3 columns [year,co2,co2_growth_prct], sort data by year, and set the first row's co2_growth_prct to 0.
+![alt text](image-1.png)
+<p style="text-align: center;">Figure 1</p>
 
-#### Transformation in data source 2
-Since data source 2 is directory link, the extracted data is a list of pandas dataframe. For each dataframe, we remove the last column, since it's the error column. Then we concate these dataframes, sort by Jahr and Monat, and drop any null rows.
+#### Transform Data
+Once the data extraction finishes, the data are read by Pandas and be ready to be transformed.
+* Regular methodlogies like data cleaning, data selection and data column renaming are applied.
+* For a datasource linking directory, we concatenate its all dataframe.
+* We also restrict the prototype of the datasource, which requires the datasource columns should at least the columns in the prototype. Otherwise, it throws an exception, and the pipeline fails.
+* We Specify the each column in prototype with its data type. If some column in a row is not compatible with the data type defined, the row is cleaned.
+* The values in datasource 5's column Name are in German letter and datasource 2,3 's column are in English letter. In order to make them compatible, we convert the German Umlauts(ä,ö,ü,ß) to its English form.
+* The time varies in our datasources. Therefore, we find the set of common years and months in datasource 2,3,4. Select the data fitting those years and months.
+* We join the datasource 4 and datasource 5 in the end.
 
-#### Transformation in data source 3
-After extraction, we should obtain a list of dataframes. For these dataframes, we first drop the last column, since it's the error column. Then concate the dataframes, sort by columns Jahr and Monat, and finally drop any row with null value.
 
-#### Transformation in data source 4
-After extractions, we should get a list of dataframes. First, we remove last two columns, since they are null and error column. Then we concate these dataframes and drop any null rows. Since the column Monat is 'YYYYMM' formatted, we create a new column Jahr that extract years from Monat, and correct the Monat column.  Finally, we sort the concated dataframe by Stationsindex,Jahr and Monat.
+The pipelines described above is flexible when the input data changes. As long as the datasource is still under the interface of the prototypes, namely its structure is the child class of the prototype (from OOP view), our pipeline can still handle that.
 
-#### Transformation in data source 5
-After extraction, we apply remove empty spaces on the second and third columns, and then drop any null rows. Finally, select columns Stationindex,Name and Bundesland from it.
+#### Load data
+We choose SQL database to load the data. We have thought of several other ways before. But considering SQL is structured, typed and can put constraints, we choose it. We load all the data frame into one SQL db file.
 
-The pipelines described above is flexible when the input data changes. If the data source 1 changes, the transformation in pipeline 1 still guarantees the output data is complete and up-to-date(If the fetched data is up-to-date). If the data source 2 changes, the transformation in pipeline 2 works similar as in pipeline 1.  The same for data source 3 and 5. For data source 4, if the Monat column changes its format, we may fail this pipeline. Furthermore, if the columns of the data source is modified,(e.g reducing specific columns), all these 5 pipelines could fail. But in terms of non-structural change(i.e entry change), the pipelines still hold. 
-
-### Result and Limitations
-
-All the pipelines output the data in a CSV file with headers. Since the CSV is lightweight and easy to load and interpret, it's used. Data source 1 might be inaccurate, since it's collected and computed from multiple data sources. Some of the results are estimated, leading to some bias. And because the publisher is an environmentalism NGO, the exaggeration of CO2 emission can occur, which is biased.
-
-One potential issue of the final report is the weak correlation between CO2 and soil condition. The soil condition depends on too many factors. Solely CO2 emission,temperature and precipitation might not contribute too much. Therefore, a weak correlation may occur. And in the data source of CO2, it only indicates how much it emits annually with ignoring the amount absorbed by nature. Low amount of CO2 in the atmosphere can happen, which can bias the analysis. 
-
+#### Limitation
+* Data source 1 is a little of doubtful. The data source can date back to 1800'S, which is unbelievable. 
+* Data source 1 might be exaggerative, since it's published by Environmental organization. To advocate more environment low carbon, exaggeration on CO2 amount can occur.
+* The Main questions seems to too complicated with the data source. The soil conditions in physical world are affected by multiple large amount of factors. The datasource in this project might be insufficient to find answers.
+* We haven't checked the correctness of German state names(e.g Bayern) in our datasource, there might exist some typos.
