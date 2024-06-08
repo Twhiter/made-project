@@ -1,0 +1,84 @@
+composite blocktype StopExtractorBlocktype {
+
+    property url oftype text;
+    input inputName oftype None;
+    output outputName oftype Sheet;
+
+    inputName ->
+        GFTSHttpExtrator ->
+        GFTSArchieveInterpreter ->
+        StopFilePickler ->
+        StopTextFileInterpretor ->
+        StopCSVInterpretor ->
+        outputName;
+
+
+    block GFTSHttpExtrator oftype HttpExtractor {
+        url:url;
+    }
+
+    block GFTSArchieveInterpreter oftype ArchiveInterpreter {
+        archiveType: "zip";
+    }
+
+    block StopFilePickler oftype FilePicker {
+        path:'/stops.txt';
+    }
+
+    block StopTextFileInterpretor oftype TextFileInterpreter {
+    }
+
+    block StopCSVInterpretor oftype CSVInterpreter {
+        delimiter:',';
+        enclosing:'"';
+    }
+}
+
+
+pipeline Stop {
+
+    StopExtractor ->
+        StopTableInterpretor ->
+        StopLoader;
+
+    block StopExtractor oftype StopExtractorBlocktype {
+        url:'https://gtfs.rhoenenergie-bus.de/GTFS.zip';
+    }
+
+    block StopTableInterpretor oftype TableInterpreter {
+
+        header:true;
+        columns:[
+            'stop_id' oftype integer,
+            'stop_name' oftype text,
+            'stop_lat'oftype Coordinates,
+            'stop_lon' oftype Coordinates,
+            'zone_id' oftype Zone1645
+        ];
+    }
+
+    block StopLoader oftype SQLiteLoader {
+        file:'gtfs.sqlite';
+        table:'stops';
+    }
+
+    constraint CoordinatesConstraint on decimal:
+        value >= -90 and value <= 90;
+    
+    constraint Zone1645Constraint on integer:
+        value == 1645;
+    
+    valuetype Coordinates oftype decimal {
+        constraints:[CoordinatesConstraint];
+    }
+
+    valuetype Zone1645 oftype integer {
+        constraints:[Zone1645Constraint];
+    }
+}
+
+
+
+
+
+
