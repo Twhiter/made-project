@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 import os
@@ -55,36 +55,24 @@ def read_all_csv_files(csv_directory,**kwargs):
     display(f'Done read')
     
     return data_frame_list
-    
 
 
-if not os.path.exists('../data/download'):
-    os.makedirs('../data/download')
+def makedir():
+    if not os.path.exists('../data/download'):
+        os.makedirs('../data/download')
+
+    for i in range(1,6):
+        if not os.path.exists(f'../data/download/data{i}'):
+            os.makedirs(f'../data/download/data{i}')
 
 
-for i in range(1,6):
-    if not os.path.exists(f'../data/download/data{i}'):
-        os.makedirs(f'../data/download/data{i}')
+# ### Extract datasources
+
+# In[2]:
 
 
-data1_path = '../data/download/data1/data1.csv'
-data2_directory = '../data/download/data2'
-data3_directory = '../data/download/data3'
-data4_directory = '../data/download/data4'
-data5_path = '../data/download/data5/data5.csv'
-
-
-# ### Extract data source 1
-
-# In[ ]:
-
-
-link1 = 'https://nyc3.digitaloceanspaces.com/owid-public/data/co2/owid-co2-data.csv'
-
-
-def extract_data1(link):
+def download_data1(link,save_position):
     try:
-        save_position = data1_path
         display('Extracting data source 1')
         download(link,save_position)
     except Exception as e:
@@ -93,18 +81,8 @@ def extract_data1(link):
     else:
         display('Done Extracting data source 1')
 
-extract_data1(link1)
 
-
-# ### Extract data source 2
-
-# In[ ]:
-
-
-link2 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/air_temperature_mean'
-
-
-def extract_data2(link):
+def download_data2(link,save_position):
     print('extract datasource 2')
 
     try:
@@ -116,25 +94,16 @@ def extract_data2(link):
 
         for csv_name in csv_names:
 
-            download(f'{link}/{csv_name}',f'{data2_directory}/{csv_name}')
+            download(f'{link}/{csv_name}',f'{save_position}/{csv_name}')
     except Exception as e:
         display('Extraction 2 fails')
         display(e)
     else:
         display('Done extracting data 2')
 
-extract_data2(link2)
 
 
-# ### Extract data source 3
-
-# In[ ]:
-
-
-link3 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/precipitation'
-
-
-def extract_data3(link):
+def download_data3(link,save_position):
     print('extract datasource 3')
 
     try:
@@ -145,7 +114,7 @@ def extract_data3(link):
         display(csv_names)
 
         for csv_name in csv_names:
-            download(f'{link}/{csv_name}',f'{data3_directory}/{csv_name}')
+            download(f'{link}/{csv_name}',f'{save_position}/{csv_name}')
     except Exception as e:
         display('Extraction 3 fails')
         display(e)
@@ -153,18 +122,8 @@ def extract_data3(link):
         display('Done extracting data 3')
 
 
-extract_data3(link3)
 
-
-# ### Extract Data source 4
-
-# In[ ]:
-
-
-link4 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical'
-
-
-def extract_data4(link):
+def download_data4(link,save_position):
     display('extract datasource 4')
 
     try:
@@ -176,26 +135,15 @@ def extract_data4(link):
 
         for gz_name in tqdm(gz_names):
             time.sleep(1)
-            download(f'{link}/{gz_name}',f'{data4_directory}/{gz_name}')
+            download(f'{link}/{gz_name}',f'{save_position}/{gz_name}')
     except Exception as e:
         display('Extraction 4 fails')
         display(e)
     else:
         display('Done extracting data 4')
 
-extract_data4(link4)
-
-
-# ### Extract data source 5
-
-# In[ ]:
-
-
-link5 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/derived_germany_soil_monthly_historical_stations_list.txt'
-
-def extract_data5(link):
+def download_data5(link,save_position):
     try:
-        save_position = data5_path
         display('Extracting data source 5')
         download(link,save_position)
     except Exception as e:
@@ -204,12 +152,33 @@ def extract_data5(link):
     else:
         display('Done Extracting data source 5')
 
-extract_data5(link5)
+def read_csv_from_saved_positions(save_position1,save_position2,save_position3,save_position4,save_position5):
+    df1 = pd.read_csv(save_position1,na_values=["null",'','NaN','NULL'])
+    df2_list = read_all_csv_files(save_position2,skiprows=1,delimiter=';',na_values=["null",'','NaN','NULL'])
+    df3_list = read_all_csv_files(save_position3,skiprows=1,delimiter=';',na_values=["null",'','NaN','NULL'])
+    df4_list = read_all_csv_files(save_position4,delimiter=';',na_values=["null",'','NaN','NULL'])
+    df5 = pd.read_csv(save_position5,delimiter=';',encoding='ISO 8859-15',na_values=["null",'','NaN','NULL'])
+
+    return df1,df2_list,df3_list,df4_list,df5
+
+
+
+def extract_data(link1,link2,link3,link4,link5,save_position1,save_position2,save_position3,save_position4,save_position5):
+    
+    download_data1(link1,save_position1)
+    download_data2(link2,save_position2)
+    download_data3(link3,save_position3)
+    download_data4(link4,save_position4)
+    download_data5(link5,save_position5)
+
+    df1,df2_list,df3_list,df4_list,df5 = read_csv_from_saved_positions(save_position1,save_position2,save_position3,save_position4,save_position5)
+
+    return df1,df2_list,df3_list,df4_list,df5
 
 
 # ### Prototype defining
 
-# In[159]:
+# In[3]:
 
 
 data1_prototype = {
@@ -250,17 +219,7 @@ data5_prototype = {
 
 # ### Transform Data
 
-# In[160]:
-
-
-df1 = pd.read_csv(data1_path)
-df2_list = read_all_csv_files(data2_directory,skiprows=1,delimiter=';')
-df3_list = read_all_csv_files(data3_directory,skiprows=1,delimiter=';')
-df4_list = read_all_csv_files(data4_directory,delimiter=';')
-df5 = pd.read_csv(data5_path,delimiter=';',encoding='ISO 8859-15')
-
-
-# In[161]:
+# In[4]:
 
 
 from typing import Hashable
@@ -281,7 +240,13 @@ def merge_data_frames(data_frame_list) -> pd.DataFrame:
 def enforce_type(value,dtype):
     try:
         if dtype == 'int64':
-            return int(value)
+
+            if isinstance(value,int) or isinstance(value,float):
+                return int(value) if int(value) == value else None
+            elif isinstance(value,str):
+                v = float(value)
+                return int(value) if int(v) == v else None
+        
         elif dtype == 'float64':
             return float(value)
         elif dtype == 'string':
@@ -297,7 +262,10 @@ def typing_filter(df,column_dtypes:Hashable):
 
     for column,dtype in column_dtypes.items():
         df[column] = df[column].apply(lambda x: enforce_type(x,dtype))
-    
+        df.dropna(inplace=True)
+        df[column] = df[column].astype(dtype)
+
+
     df.dropna(inplace=True)
     return df
 
@@ -311,7 +279,7 @@ def check_prototype(data_prototype,data_frame):
         raise TypeError(f'Expected columns:{data_fields} but actually:{columns}, difference:{data_fields - columns}')
 
 
-# In[162]:
+# In[5]:
 
 
 def transform_data1(df):
@@ -327,7 +295,8 @@ def transform_data1(df):
     df = df.sort_values(by=['year'])
     
     #set the first column of co2_growth_prct to 0
-    df.iloc[0,2] = 0
+    if df.shape[0] >=1 and df.isnull().iloc[0, 2]:
+        df.iloc[0,2] = 0
 
     #check prototype
     check_prototype(data1_prototype,df)
@@ -429,14 +398,7 @@ def transform_data5(df):
     return df
 
 
-df1 = transform_data1(df1)
-df2 = transform_data2(df2_list)
-df3 = transform_data3(df3_list)
-df4 = transform_data4(df4_list)
-df5 = transform_data5(df5)
-
-
-# In[163]:
+# In[6]:
 
 
 def join_by_stationidx(data_frame4,data_frame5):
@@ -464,33 +426,73 @@ def filter_common_year_month(data_frame2,data_frame3,data_frame45):
     return data_frame2[mask2],data_frame3[mask3],data_frame45[mask45]
 
 
-df45 = join_by_stationidx(df4,df5)
-df2,df3,df45 = filter_common_year_month(df2,df3,df45)
+# In[7]:
+
+
+def transform(df1,df2_list,df3_list,df4_list,df5):
+
+    df1 = transform_data1(df1)
+    df2 = transform_data2(df2_list)
+    df3 = transform_data3(df3_list)
+    df4 = transform_data4(df4_list)
+    df5 = transform_data5(df5)
+
+    df45 = join_by_stationidx(df4,df5)
+    df2,df3,df45 = filter_common_year_month(df2,df3,df45)
+
+    return df1,df2,df3,df45
 
 
 # ### Load the data
 
-# In[164]:
+# In[8]:
 
 
 import sqlite3
 
+def load_data(db_file,df1,df2,df3,df45):
+
+    if os.path.exists(db_file):
+        # Delete the file
+        os.remove(db_file)
+
+    conn = sqlite3.connect(db_file)
+    df1.set_index('year').to_sql('co2',if_exists='replace',index=True,con=conn)
+    df2.set_index(['year','month']).to_sql('temperature',if_exists='replace',index=True,con=conn)
+    df3.set_index(['year','month']).to_sql('precipitation',if_exists='replace',index=True,con=conn)
+    df45.set_index(['Stationsindex','year','month']).to_sql('soil',if_exists='replace',index=True,con=conn)
+
+    conn.close()
+
+
+# In[9]:
+
+
+data1_path = '../data/download/data1/data1.csv'
+data2_directory = '../data/download/data2'
+data3_directory = '../data/download/data3'
+data4_directory = '../data/download/data4'
+data5_path = '../data/download/data5/data5.csv'
+
+
+link1 = 'https://nyc3.digitaloceanspaces.com/owid-public/data/co2/owid-co2-data.csv'
+link2 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/air_temperature_mean'
+link3 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/precipitation'
+link4 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical'
+link5 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/derived_germany_soil_monthly_historical_stations_list.txt'
+
 db_file = '../data/data.sql'
 
-if os.path.exists(db_file):
-    # Delete the file
-    os.remove(db_file)
 
 
+def etl_pipeline(link1,link2,link3,link4,link5,save_position1,save_position2,save_position3,save_position4,save_position5,db_file):
 
-conn = sqlite3.connect(db_file)
-
-
-df1.set_index('year').to_sql('co2',if_exists='replace',index=True,con=conn)
-df2.set_index(['year','month']).to_sql('temperature',if_exists='replace',index=True,con=conn)
-df3.set_index(['year','month']).to_sql('precipitation',if_exists='replace',index=True,con=conn)
-df45.set_index(['Stationsindex','year','month']).to_sql('soil',if_exists='replace',index=True,con=conn)
+    makedir()
+    df1,df2_list,df3_list,df4_list,df5 = extract_data(link1,link2,link3,link4,link5,save_position1,save_position2,save_position3,save_position4,save_position5)
+    df1,df2,df3,df45 = transform(df1,df2_list,df3_list,df4_list,df5)
+    load_data(db_file,df1,df2,df3,df45)
 
 
-conn.close()
+if __name__ == '__main__':
+    etl_pipeline(link1,link2,link3,link4,link5,data1_path,data2_directory,data3_directory,data4_directory,data5_path,db_file)
 
