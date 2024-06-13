@@ -291,6 +291,8 @@ def test_load():
         assert_dataframe(df3,expected3)
         assert_dataframe(df45,expected45)
 
+        os.remove(db_file)
+
 
 
 
