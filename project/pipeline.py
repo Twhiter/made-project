@@ -481,7 +481,7 @@ link3 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/mo
 link4 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical'
 link5 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/derived_germany_soil_monthly_historical_stations_list.txt'
 
-db_file = '../data/data.sql'
+db_file = '../data/data.db'
 
 
 

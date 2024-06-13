@@ -3,3 +3,6 @@
 !/data/.gitkeep
 /test/*
 /exercises/*.sqlite
+/exercises/*.log
+/project/.pytest_cahe
+/.vscode

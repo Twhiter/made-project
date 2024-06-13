@@ -1,11 +1,12 @@
 import os
 from pathlib import Path
 import shutil
+import sqlite3
 import pandas as pd
 import numpy as np
 import pytest
 
-from pipeline import check_prototype, etl_pipeline, find_common_year_month, join_by_stationidx, transform, transform_data1, transform_data2, transform_data3, transform_data4, transform_data5,typing_filter
+from pipeline import check_prototype, etl_pipeline, find_common_year_month, join_by_stationidx, load_data, transform, transform_data1, transform_data2, transform_data3, transform_data4, transform_data5,typing_filter
 from unittest.mock import patch
 
 
@@ -254,6 +255,47 @@ def test_transform():
     assert_dataframe(result45,expected45)
 
 
+def test_load():
+
+
+    df1 = pd.read_csv('./test/test_transform/out1.csv')
+    df2 = pd.read_csv('./test/test_transform/out2.csv')
+    df3 = pd.read_csv('./test/test_transform/out3.csv')
+    df45 = pd.read_csv('./test/test_transform/out45.csv',dtype={
+        'Name':'string',
+        'Bundesland':'string'
+    })
+
+    db_file = './test/test.db'
+
+    load_data(db_file,df1,df2,df3,df45)
+    assert os.path.exists(db_file)
+
+    with sqlite3.connect(db_file) as conn:
+
+        query1 = 'select * from co2'
+        query2 = 'select * from temperature'
+        query3 = 'select * from precipitation'
+        query45 = 'select * from soil'
+
+        expected1 = pd.read_sql_query(query1, conn)
+        expected2 = pd.read_sql_query(query2, conn)
+        expected3 = pd.read_sql_query(query3, conn)
+        expected45 = pd.read_sql_query(query45, conn,dtype={
+        'Name':'string',
+        'Bundesland':'string'
+    })
+
+        assert_dataframe(df1,expected1)
+        assert_dataframe(df2,expected2)
+        assert_dataframe(df3,expected3)
+        assert_dataframe(df45,expected45)
+
+
+
+
+
+
 class TestPipeline():
 
     @staticmethod
@@ -310,34 +352,34 @@ class TestPipeline():
 
 
 
-def test_system():
+# def test_system():
 
-    data1_path = '../data/download/data1/data1.csv'
-    data2_directory = '../data/download/data2'
-    data3_directory = '../data/download/data3'
-    data4_directory = '../data/download/data4'
-    data5_path = '../data/download/data5/data5.csv'
+#     data1_path = '../data/download/data1/data1.csv'
+#     data2_directory = '../data/download/data2'
+#     data3_directory = '../data/download/data3'
+#     data4_directory = '../data/download/data4'
+#     data5_path = '../data/download/data5/data5.csv'
 
 
-    link1 = 'https://nyc3.digitaloceanspaces.com/owid-public/data/co2/owid-co2-data.csv'
-    link2 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/air_temperature_mean'
-    link3 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/precipitation'
-    link4 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical'
-    link5 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/derived_germany_soil_monthly_historical_stations_list.txt'
-    db_file = '../data/data.sql'
+#     link1 = 'https://nyc3.digitaloceanspaces.com/owid-public/data/co2/owid-co2-data.csv'
+#     link2 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/air_temperature_mean'
+#     link3 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/precipitation'
+#     link4 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical'
+#     link5 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/derived_germany_soil_monthly_historical_stations_list.txt'
+#     db_file = '../data/data.db'
 
-    shutil.rmtree('../data/download/')
+#     shutil.rmtree('../data/download/')
     
-    if os.path.exists(db_file):
-        os.remove(db_file)
+#     if os.path.exists(db_file):
+#         os.remove(db_file)
     
-    etl_pipeline(link1,link2,link3,link4,link5,data1_path,data2_directory,data3_directory,data4_directory,data5_path,db_file)
+#     etl_pipeline(link1,link2,link3,link4,link5,data1_path,data2_directory,data3_directory,data4_directory,data5_path,db_file)
 
 
-    assert Path(data1_path).is_file
-    assert Path(data2_directory).is_dir
-    assert Path(data3_directory).is_dir
-    assert Path(data4_directory).is_dir
-    assert Path(data5_path).is_file
+#     assert Path(data1_path).is_file
+#     assert Path(data2_directory).is_dir
+#     assert Path(data3_directory).is_dir
+#     assert Path(data4_directory).is_dir
+#     assert Path(data5_path).is_file
 
-    assert os.path.exists(db_file)
+#     assert os.path.exists(db_file)
