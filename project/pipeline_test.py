@@ -354,34 +354,34 @@ class TestPipeline():
 
 
 
-# def test_system():
+def test_system():
 
-#     data1_path = '../data/download/data1/data1.csv'
-#     data2_directory = '../data/download/data2'
-#     data3_directory = '../data/download/data3'
-#     data4_directory = '../data/download/data4'
-#     data5_path = '../data/download/data5/data5.csv'
+    data1_path = '../data/download/data1/data1.csv'
+    data2_directory = '../data/download/data2'
+    data3_directory = '../data/download/data3'
+    data4_directory = '../data/download/data4'
+    data5_path = '../data/download/data5/data5.csv'
 
 
-#     link1 = 'https://nyc3.digitaloceanspaces.com/owid-public/data/co2/owid-co2-data.csv'
-#     link2 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/air_temperature_mean'
-#     link3 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/precipitation'
-#     link4 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical'
-#     link5 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/derived_germany_soil_monthly_historical_stations_list.txt'
-#     db_file = '../data/data.db'
+    link1 = 'https://nyc3.digitaloceanspaces.com/owid-public/data/co2/owid-co2-data.csv'
+    link2 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/air_temperature_mean'
+    link3 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/precipitation'
+    link4 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical'
+    link5 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/derived_germany_soil_monthly_historical_stations_list.txt'
+    db_file = '../data/data.db'
 
-#     shutil.rmtree('../data/download/')
+    shutil.rmtree('../data/download/')
     
-#     if os.path.exists(db_file):
-#         os.remove(db_file)
+    if os.path.exists(db_file):
+        os.remove(db_file)
     
-#     etl_pipeline(link1,link2,link3,link4,link5,data1_path,data2_directory,data3_directory,data4_directory,data5_path,db_file)
+    etl_pipeline(link1,link2,link3,link4,link5,data1_path,data2_directory,data3_directory,data4_directory,data5_path,db_file)
 
 
-#     assert Path(data1_path).is_file
-#     assert Path(data2_directory).is_dir
-#     assert Path(data3_directory).is_dir
-#     assert Path(data4_directory).is_dir
-#     assert Path(data5_path).is_file
+    assert Path(data1_path).is_file
+    assert Path(data2_directory).is_dir
+    assert Path(data3_directory).is_dir
+    assert Path(data4_directory).is_dir
+    assert Path(data5_path).is_file
 
-#     assert os.path.exists(db_file)
+    assert os.path.exists(db_file)
