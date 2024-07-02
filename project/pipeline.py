@@ -12,6 +12,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import time
 from IPython.display import display
+import geopandas as gpd
 
 def download(url: str, fname: str, chunk_size=1024):
     resp = requests.get(url, stream=True)
@@ -61,7 +62,7 @@ def makedir():
     if not os.path.exists('../data/download'):
         os.makedirs('../data/download')
 
-    for i in range(1,6):
+    for i in range(1,8):
         if not os.path.exists(f'../data/download/data{i}'):
             os.makedirs(f'../data/download/data{i}')
 
@@ -78,6 +79,7 @@ def download_data1(link,save_position):
     except Exception as e:
         display('Extraction 1 fails')
         display(e)
+        raise e
     else:
         display('Done Extracting data source 1')
 
@@ -98,6 +100,7 @@ def download_data2(link,save_position):
     except Exception as e:
         display('Extraction 2 fails')
         display(e)
+        raise e
     else:
         display('Done extracting data 2')
 
@@ -118,6 +121,7 @@ def download_data3(link,save_position):
     except Exception as e:
         display('Extraction 3 fails')
         display(e)
+        raise e
     else:
         display('Done extracting data 3')
 
@@ -134,11 +138,12 @@ def download_data4(link,save_position):
         display(gz_names)
 
         for gz_name in tqdm(gz_names):
-            time.sleep(1)
+            time.sleep(2)
             download(f'{link}/{gz_name}',f'{save_position}/{gz_name}')
     except Exception as e:
         display('Extraction 4 fails')
-        display(e)
+        display(f'fail to download {link}/{gz_name}')
+        raise e
     else:
         display('Done extracting data 4')
 
@@ -149,31 +154,59 @@ def download_data5(link,save_position):
     except Exception as e:
         display('Extraction 5 fails')
         display(e)
+        raise e
     else:
         display('Done Extracting data source 5')
 
-def read_csv_from_saved_positions(save_position1,save_position2,save_position3,save_position4,save_position5):
+def download_data6(link,save_position):
+    try:
+        display('Extracting data source 6')
+        download(link,save_position)
+    except Exception as e:
+        display('Extraction 6 fails')
+        display(e)
+        raise e
+    else:
+        display('Done Extracting data source 6')
+
+def download_data7(link,save_position):
+    try:
+        display('Extracting data source 7')
+        download(link,save_position)
+    except Exception as e:
+        display('Extraction 7 fails')
+        display(e)
+        raise e
+    else:
+        display('Done Extracting data source 7')
+
+
+def read_csv_from_saved_positions(save_position1,save_position2,save_position3,save_position4,save_position5,save_position6,save_position7):
     df1 = pd.read_csv(save_position1,na_values=["null",'','NaN','NULL'])
     df2_list = read_all_csv_files(save_position2,skiprows=1,delimiter=';',na_values=["null",'','NaN','NULL'])
     df3_list = read_all_csv_files(save_position3,skiprows=1,delimiter=';',na_values=["null",'','NaN','NULL'])
     df4_list = read_all_csv_files(save_position4,delimiter=';',na_values=["null",'','NaN','NULL'])
     df5 = pd.read_csv(save_position5,delimiter=';',encoding='ISO 8859-15',na_values=["null",'','NaN','NULL'])
+    df6 = gpd.read_file(save_position6, dtype={'plz': str}, encoding='utf-8')
+    df7 = pd.read_csv(save_position7, sep=',', dtype={'plz': str})
 
-    return df1,df2_list,df3_list,df4_list,df5
+    return df1,df2_list,df3_list,df4_list,df5,df6,df7
 
 
 
-def extract_data(link1,link2,link3,link4,link5,save_position1,save_position2,save_position3,save_position4,save_position5):
+def extract_data(link1,link2,link3,link4,link5,link6,link7,save_position1,save_position2,save_position3,save_position4,save_position5,save_position6,save_position7):
     
     download_data1(link1,save_position1)
     download_data2(link2,save_position2)
     download_data3(link3,save_position3)
     download_data4(link4,save_position4)
     download_data5(link5,save_position5)
+    download_data6(link6,save_position6)
+    download_data7(link7,save_position7)
 
-    df1,df2_list,df3_list,df4_list,df5 = read_csv_from_saved_positions(save_position1,save_position2,save_position3,save_position4,save_position5)
+    df1,df2_list,df3_list,df4_list,df5,df6,df7 = read_csv_from_saved_positions(save_position1,save_position2,save_position3,save_position4,save_position5,save_position6,save_position7)
 
-    return df1,df2_list,df3_list,df4_list,df5
+    return df1,df2_list,df3_list,df4_list,df5,df6,df7
 
 
 # ### Prototype defining
@@ -186,17 +219,17 @@ data1_prototype = {
 }
 
 data2_prototype = {
-    'year':'int64','month':'int64','Brandenburg/Berlin':'float64','Brandenburg':'float64','Baden-Wuerttemberg':'float64',
-    'Bayern':'float64','Hessen':'float64','Mecklenburg-Vorpommern':'float64','Niedersachsen':'float64','Niedersachsen/Hamburg/Bremen':'float64',
+    'year':'int64','month':'int64','Berlin':'float64','Brandenburg':'float64','Baden-Wuerttemberg':'float64',
+    'Bayern':'float64','Hessen':'float64','Mecklenburg-Vorpommern':'float64','Niedersachsen':'float64','Hamburg':'float64','Bremen':'float64',
     'Nordrhein-Westfalen':'float64','Rheinland-Pfalz':'float64','Schleswig-Holstein':'float64','Saarland':'float64',
-    'Sachsen':'float64','Sachsen-Anhalt':'float64','Thueringen/Sachsen-Anhalt':'float64','Thueringen':'float64','Deutschland':'float64'
+    'Sachsen':'float64','Sachsen-Anhalt':'float64','Thueringen':'float64','Deutschland':'float64'
 }
 
 data3_prototype = {
-    'year':'int64','month':'int64','Brandenburg/Berlin':'float64','Brandenburg':'float64','Baden-Wuerttemberg':'float64',
-    'Bayern':'float64','Hessen':'float64','Mecklenburg-Vorpommern':'float64','Niedersachsen':'float64','Niedersachsen/Hamburg/Bremen':'float64',
+    'year':'int64','month':'int64','Berlin':'float64','Brandenburg':'float64','Baden-Wuerttemberg':'float64',
+    'Bayern':'float64','Hessen':'float64','Mecklenburg-Vorpommern':'float64','Niedersachsen':'float64','Hamburg':'float64','Bremen':'float64',
     'Nordrhein-Westfalen':'float64','Rheinland-Pfalz':'float64','Schleswig-Holstein':'float64','Saarland':'float64',
-    'Sachsen':'float64','Sachsen-Anhalt':'float64','Thueringen/Sachsen-Anhalt':'float64','Thueringen':'float64','Deutschland':'float64'
+    'Sachsen':'float64','Sachsen-Anhalt':'float64','Thueringen':'float64','Deutschland':'float64'
 }
 
 data4_prototype = {
@@ -217,6 +250,18 @@ data5_prototype = {
 }
 
 
+data6_prototype = {
+    'plz':'string',
+    'geometry':'geometry'
+}
+
+data7_prototype = {
+    'ort':'string',
+    'plz':'string',
+    'Bundesland':'string'
+}
+
+
 # ### Transform Data
 
 # In[4]:
@@ -232,6 +277,21 @@ def German_to_English(string:str) -> str:
     string = string.replace('ß','ss')
 
     return string
+
+def rename_state(df) -> pd.DataFrame:
+
+    # Rename Brandenburg/Berlin to Berlin
+    df = df.rename(columns={'Brandenburg/Berlin':'Berlin'})
+
+    #rename Niedersachsen/Hamburg/Bremen to Hamburg and Bremen
+    df = df.rename(columns={'Niedersachsen/Hamburg/Bremen':'Hamburg'})
+    df['Bremen'] = df['Hamburg']
+
+    #remove Thueringen/Sachsen-Anhalt
+    df = df.drop(columns='Thueringen/Sachsen-Anhalt')
+
+    return df
+
 
 
 def merge_data_frames(data_frame_list) -> pd.DataFrame:
@@ -263,7 +323,9 @@ def typing_filter(df,column_dtypes:Hashable):
     for column,dtype in column_dtypes.items():
         df[column] = df[column].apply(lambda x: enforce_type(x,dtype))
         df.dropna(inplace=True)
-        df[column] = df[column].astype(dtype)
+
+        if dtype in ['int64','float64','string']:
+            df[column] = df[column].astype(dtype)
 
 
     df.dropna(inplace=True)
@@ -315,6 +377,8 @@ def transform_data2(df_list):
     #rename the column name
     df.rename(columns={'Jahr':'year','Monat':'month'},inplace=True)
 
+    df = rename_state(df)
+
     #drop null rows
     df.dropna(inplace=True)
 
@@ -334,6 +398,9 @@ def transform_data3(df_list):
 
     #rename the column name
     df.rename(columns={'Jahr':'year','Monat':'month'},inplace=True)
+
+    #rename the state name
+    df = rename_state(df)
 
     #drop null rows
     df.dropna(inplace=True)
@@ -398,13 +465,65 @@ def transform_data5(df):
     return df
 
 
+def transform_data6(df):
+    
+    #select only plz and geometry
+    df = df[['plz','geometry']]
+
+    #clean empty row
+    df.dropna(inplace=True)
+
+    # check prototype
+    check_prototype(data6_prototype,df)
+
+    # set the typing and filter out those not fitting
+    df = typing_filter(df,data6_prototype)
+
+    return df
+
+def transform_data7(df):
+    #select ort,plz and bundesland
+    df = df[['ort','plz','bundesland']]
+
+    # rename bundesland to Bundesland
+    df.rename(columns={'bundesland':'Bundesland'},inplace=True)
+
+    #for bundesland colum, remove the space and convert German letter to English letter
+    df['Bundesland'] = df['Bundesland'].apply(lambda x: German_to_English(x.strip()))
+
+    #clean empty row
+    df.dropna(inplace=True)
+
+    # check prototype
+    check_prototype(data7_prototype,df)
+
+    # set the typing and filter out those not fitting
+    df = typing_filter(df,data7_prototype)
+
+    return df
+
+
 # In[6]:
 
 
 def join_by_stationidx(data_frame4,data_frame5):
     data_frame45 = data_frame4.join(data_frame5.set_index('Stationsindex'),how='inner',on='Stationsindex')
 
+    #clean empty row
+    data_frame45.dropna(inplace=True)
+
     return data_frame45
+
+
+def joint_by_plz(data_frame6,data_frame7):
+    data_frame67 = pd.merge( left=data_frame6, right=data_frame7, on='plz',how='inner')
+
+    #clean empty row
+    data_frame67.dropna(inplace=True)
+
+    return data_frame67
+
+    
 
 # find their common year and month set
 def find_common_year_month(data_frame2,data_frame3,data_frame45):
@@ -426,21 +545,27 @@ def filter_common_year_month(data_frame2,data_frame3,data_frame45):
     return data_frame2[mask2],data_frame3[mask3],data_frame45[mask45]
 
 
+
+
+
 # In[7]:
 
 
-def transform(df1,df2_list,df3_list,df4_list,df5):
+def transform(df1,df2_list,df3_list,df4_list,df5,df6,df7):
 
     df1 = transform_data1(df1)
     df2 = transform_data2(df2_list)
     df3 = transform_data3(df3_list)
     df4 = transform_data4(df4_list)
     df5 = transform_data5(df5)
+    df6 = transform_data6(df6)
+    df7 = transform_data7(df7)
 
     df45 = join_by_stationidx(df4,df5)
     df2,df3,df45 = filter_common_year_month(df2,df3,df45)
+    df67 = joint_by_plz(df6,df7)
 
-    return df1,df2,df3,df45
+    return df1,df2,df3,df45,df67
 
 
 # ### Load the data
@@ -450,7 +575,7 @@ def transform(df1,df2_list,df3_list,df4_list,df5):
 
 import sqlite3
 
-def load_data(db_file,df1,df2,df3,df45):
+def load_data(db_file,geo_json_path,df1,df2,df3,df45,df67):
 
     if os.path.exists(db_file):
         # Delete the file
@@ -462,10 +587,13 @@ def load_data(db_file,df1,df2,df3,df45):
     df3.set_index(['year','month']).to_sql('precipitation',if_exists='replace',index=True,con=conn)
     df45.set_index(['Stationsindex','year','month']).to_sql('soil',if_exists='replace',index=True,con=conn)
 
+    #save df67 to geojson
+    df67.to_file(geo_json_path,driver='GeoJSON')
+
     conn.close()
 
 
-# In[9]:
+# In[ ]:
 
 
 data1_path = '../data/download/data1/data1.csv'
@@ -473,6 +601,8 @@ data2_directory = '../data/download/data2'
 data3_directory = '../data/download/data3'
 data4_directory = '../data/download/data4'
 data5_path = '../data/download/data5/data5.csv'
+data6_path = '../data/download/data6/data6.zip'
+data7_path = '../data/download/data7/data7.csv'
 
 
 link1 = 'https://nyc3.digitaloceanspaces.com/owid-public/data/co2/owid-co2-data.csv'
@@ -480,19 +610,22 @@ link2 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/mo
 link3 = 'https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/precipitation'
 link4 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical'
 link5 = 'https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/derived_germany_soil_monthly_historical_stations_list.txt'
+link6 = 'https://downloads.suche-postleitzahl.org/v2/public/plz-5stellig.shp.zip'
+link7 = 'https://downloads.suche-postleitzahl.org/v2/public/zuordnung_plz_ort.csv'
 
-db_file = '../data/data.db'
+db_file = '../data/data.sql'
+geo_json_path = '../data/place.geojson'
 
 
 
-def etl_pipeline(link1,link2,link3,link4,link5,save_position1,save_position2,save_position3,save_position4,save_position5,db_file):
+def etl_pipeline(link1,link2,link3,link4,link5,link6,link7,save_position1,save_position2,save_position3,save_position4,save_position5,save_position6,save_position7,db_file,geo_json_path):
 
     makedir()
-    df1,df2_list,df3_list,df4_list,df5 = extract_data(link1,link2,link3,link4,link5,save_position1,save_position2,save_position3,save_position4,save_position5)
-    df1,df2,df3,df45 = transform(df1,df2_list,df3_list,df4_list,df5)
-    load_data(db_file,df1,df2,df3,df45)
+    df1,df2_list,df3_list,df4_list,df5,df6,df7 = extract_data(link1,link2,link3,link4,link5,link6,link7,save_position1,save_position2,save_position3,save_position4,save_position5,save_position6,save_position7)
+    df1,df2,df3,df45,df67 = transform(df1,df2_list,df3_list,df4_list,df5,df6,df7)
+    load_data(db_file,geo_json_path,df1,df2,df3,df45,df67)
 
 
 if __name__ == '__main__':
-    etl_pipeline(link1,link2,link3,link4,link5,data1_path,data2_directory,data3_directory,data4_directory,data5_path,db_file)
+    etl_pipeline(link1,link2,link3,link4,link5,link6,link7,data1_path,data2_directory,data3_directory,data4_directory,data5_path,data6_path,data7_path,db_file,geo_json_path)
 

@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "test",
+"features": [
+{ "type": "Feature", "properties": { "plz": "90402", "ort": "Nurnberg", "Bundesland": "Bayern" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 30.0, 10.0 ], [ 40.0, 40.0 ], [ 20.0, 40.0 ], [ 10.0, 20.0 ], [ 30.0, 10.0 ] ] ] } },
+{ "type": "Feature", "properties": { "plz": "91301", "ort": "Erlangen", "Bundesland": "Bayern" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 15.0, 5.0 ], [ 25.0, 25.0 ], [ 5.0, 25.0 ], [ 5.0, 5.0 ], [ 15.0, 5.0 ] ] ] } },
+{ "type": "Feature", "properties": { "plz": "91052", "ort": "Forchheim", "Bundesland": "Bayern" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 15.0, 5.0 ], [ 25.0, 25.0 ], [ 5.0, 25.0 ], [ 5.0, 5.0 ], [ 30.0, 5.0 ], [ 15.0, 5.0 ] ] ] } }
+]
+}
