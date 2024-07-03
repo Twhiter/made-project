@@ -560,6 +560,8 @@ def test_system():
     assert Path(data3_directory).is_dir
     assert Path(data4_directory).is_dir
     assert Path(data5_path).is_file
+    assert Path(data6_path).is_file
+    assert Path(data7_path).is_file
 
     assert os.path.exists(db_file)
     assert os.path.exists(geo_json_path)
