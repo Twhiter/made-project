@@ -2,50 +2,108 @@
 
 ![](https://byob.yarr.is/Twhiter/made-project/score_ex1) ![](https://byob.yarr.is/Twhiter/made-project/score_ex2) ![](https://byob.yarr.is/Twhiter/made-project/score_ex3) ![](https://byob.yarr.is/Twhiter/made-project/score_ex4) ![](https://byob.yarr.is/Twhiter/made-project/score_ex5)
 
-# Methods of Advanced Data Engineering Template Project
 
-This template project provides some structure for your open data project in the MADE module at FAU.
-This repository contains (a) a data science project that is developed by the student over the course of the semester, and (b) the exercises that are submitted over the course of the semester.
-Before you begin, make sure you have [Python](https://www.python.org/) and [Jayvee](https://github.com/jvalue/jayvee) installed. We will work with [Jupyter notebooks](https://jupyter.org/). The easiest way to do so is to set up [VSCode](https://code.visualstudio.com/) with the [Jupyter extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter).
+# Analysis regarding CO2, precipitation and temperature affection on soil conditions
+<!-- Give your project a short title. -->
 
-To get started, please follow these steps:
-1. Create your own fork of this repository. Feel free to rename the repository right after creation, before you let the teaching instructors know your repository URL. **Do not rename the repository during the semester**.
-2. Setup the exercise feedback by changing the exercise badge sources in the `README.md` file following the patter `![](https://byob.yarr.is/<github-user-name>/<github-repo>/score_ex<exercise-number>)`. 
-For example, if your user is _myuser_ and your repo is _myrepo_, then update the badge for _exercise 1_ to `![](https://byob.yarr.is/myrepo/myuser/score_ex1)`. Proceed with the remaining badges accordingly.
+## Main Question
+
+<!-- Think about one main question you want to answer based on the data. -->
+1. How has the temperature changed in Germany over the years?
+2. How has the global CO2 emission changed over the years?
+3. How has the precipitation changed in Germany over the years?
+4. How has soil condition changed in Germany over the years?
+5. How does the global CO2 emission, temperature change and precipitation affect the soil condition?
+
+## Description
+
+<!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
+The change of soil condition led by climate change is an important problem, because changes of soil condition affects the agriculture, which may inadvertently influence human society .This projects first analyses correlation between global emission of carbon dioxide CO2 and temperature, using Pearson's correlation .The results can give insights into how does CO2 increases the temperature. Secondly, the project analyses the precipitation and CO2. Finally, it analyses the soil condition's correlation with CO2, temperature and precipitation, trying to discover whether the climate change plays a role in soil condition.
+
+## Datasources
+
+<!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
+
+### Datasource1: Data on CO2 and Greenhouse Gas Emissions by Our World in Data
+* Metadata URL: https://github.com/owid/co2-data/blob/master/owid-co2-codebook.csv
+* Data URL: https://nyc3.digitaloceanspaces.com/owid-public/data/co2/owid-co2-data.csv
+* Data Type: CSV
+
+The datasource consists of CO2 emissions of different countries from 1850 to 2022. The data source records detailed emission source, from oil, gas, industry ...etc. Moreover, emission per capita and per GDP is also accounted.
 
 
-## Project Work
-Your data engineering project will run alongside lectures during the semester. We will ask you to regularly submit project work as milestones so you can reasonably pace your work. All project work submissions **must** be placed in the `project` folder.
+### Datasource2: Regional average value for historical monthly mean temperature
+* Metadata URL: https://www.dwd.de/EN/ourservices/cdc/cdc_ueberblick-klimadaten_en.html;jsessionid=31CF9807245E6D5DC250829F80D5EF75.live21071?nn=495490#doc725352bodyText4:~:text=4.-,Average%20values%20for%20the%20individual%20federal%20states%20and%20for%20Germany%20as%20a%20whole,-The%20mean%20values
+* Data URL: https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/air_temperature_mean/
+* Data Type: CSV directory
 
-### Exporting a Jupyter Notebook
-Jupyter Notebooks can be exported using `nbconvert` (`pip install nbconvert`). For example, to export the example notebook to html: `jupyter nbconvert --to html examples/final-report-example.ipynb --embed-images --output final-report.html`
+The datasource consists of German regional average values for historical monthly mean temperature. The dataset dates back to 01.1881 until 01.2024.
+
+### Datasource3: Regional average value for historical monthly mean precipitation
+* Metadata URL: https://www.dwd.de/EN/ourservices/cdc/cdc_ueberblick-klimadaten_en.html;jsessionid=31CF9807245E6D5DC250829F80D5EF75.live21071?nn=495490#doc725352bodyText4:~:text=4.-,Average%20values%20for%20the%20individual%20federal%20states%20and%20for%20Germany%20as%20a%20whole,-The%20mean%20values
+* Data URL: https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/precipitation/
+* Data Type: CSV
+
+The datasource consists of German regional average values for historical monthly mean precipitation. The dataset dates back to 01.1881 until 01.2024.
 
 
-## Exercises
-During the semester you will need to complete exercises using [Jayvee](https://github.com/jvalue/jayvee). You **must** place your submission in the `exercises` folder in your repository and name them according to their number from one to five: `exercise<number from 1-5>.jv`.
+### Datasource4: Historical monthly soil condition data in Germany
+* Metadata URL: https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/DESCRIPTION_derivgermany_soil_monthly_historical_en.pdf
+* Data URL: https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/
+* Data Type: GZ file directory
 
-In regular intervalls, exercises will be given as homework to complete during the semester. Details and deadlines will be discussed in the lecture, also see the [course schedule](https://made.uni1.de/). At the end of the semester, you will therefore have the following files in your repository:
+The datasource consists of historical monthly soil conditions in Germany at different stations, from 01.1991 to 12.2023. Soil Properties, like soil moisture,soil temperatures ..etc are included.
 
-1. `./exercises/exercise1.jv`
-2. `./exercises/exercise2.jv`
-3. `./exercises/exercise3.jv`
-4. `./exercises/exercise4.jv`
-5. `./exercises/exercise5.jv`
+### Datasource 5: Data of soil station in Germany
+* Data URL: https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/monthly/historical/derived_germany_soil_monthly_historical_stations_list.txt
+* Data Type: CSV
 
-### Exercise Feedback
-We provide automated exercise feedback using a GitHub action (that is defined in `.github/workflows/exercise-feedback.yml`). 
+The datasource is assistance datasource, mainly cooperating with datasource 4, can be used for station details by station Index provided in datasource 4. The datasource consists of data Index, station name, station position...etc.
 
-To view your exercise feedback, navigate to Actions -> Exercise Feedback in your repository.
+### Data source 6: Germany Geography
+* Data URL: https://downloads.suche-postleitzahl.org/v2/public/plz-5stellig.shp.zip
+* Data Type: SHP
 
-The exercise feedback is executed whenever you make a change in files in the `exercise` folder and push your local changes to the repository on GitHub. To see the feedback, open the latest GitHub Action run, open the `exercise-feedback` job and `Exercise Feedback` step. You should see command line output that contains output like this:
+The datasource contains postal code and geographical information(GS84 polygon format) of each city in Germany
+  
+### Data source 7: Germany postcode
+* Data URL: https://downloads.suche-postleitzahl.org/v2/public/zuordnung_plz_ort.csv'
+* Data Type: CSV
 
-```sh
-Found exercises/exercise1.jv, executing model...
-Found output file airports.sqlite, grading...
-Grading Exercise 1
-	Overall points 17 of 17
-	---
-	By category:
-		Shape: 4 of 4
-		Types: 13 of 13
-```
+The datasource contains postal code, name and federal state of each city in Germany.
+
+## Work Packages
+
+<!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
+
+1. Searching suitable source of CO2 emission, temperature change, precipitation and soil conditions
+2. Check data source license and availability
+3. Writing project plan
+4. Building automated pipelines
+   1. Building automated ETL pipelines
+   2. Building automated Continuous Integration pipelines
+   3. Building automated testing pipelines
+5. Data analysis
+6. Conclusion
+
+
+## Part of Analysis Result
+
+### Global CO2 emission change over the years
+![alt text](image.png)
+
+### Temperature change in Germany
+![alt text](image-1.png)
+
+#### Temperature change in each federal states
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
+### Precipiation change
+![alt text](image-4.png)
+
+### Soil condition change
+![alt text](image-5.png)
+![alt text](image-6.png)
+![alt text](image-7.png)
